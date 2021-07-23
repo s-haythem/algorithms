@@ -1,0 +1,36 @@
+ALGORITHM second_checkpoint_first_method
+VAR
+    set_1 : ARRAY_OF INTEGER[5];
+    set_2 : ARRAY_OF INTEGER[6];
+    sum : INTEGER := 0;
+    i,j : INTEGER;
+    exist : BOOLEAN;
+BEGIN
+    Read (set_1);
+    Read (set_2);
+    FOR i FROM 0 TO set_1.length-1 DO
+        exist := FALSE;
+        FOR j FROM 0 TO set_2.length-1 DO
+            IF (set_1[i] = set_2[j]) THEN
+                exist := TRUE;
+                BREAK;
+            END_IF
+        END_FOR
+        IF (exist = FALSE) THEN
+            sum := sum + set_1[i];
+        END_IF
+    END_FOR
+    FOR i FROM 0 TO set_2.length-1 DO
+        exist := FALSE;
+        FOR j FROM 0 TO set_1.length-1 DO
+            IF (set_2[i] = set_1[j]) THEN
+                exist := TRUE;
+                BREAK;
+            END_IF
+        END_FOR
+        IF (exist = FALSE) THEN
+            sum := sum + set_2[i];
+        END_IF
+    END_FOR
+    Write(sum); 
+END
