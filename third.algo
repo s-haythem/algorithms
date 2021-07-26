@@ -16,7 +16,7 @@ END
 ALGORITHM orthogonal_vectors
 VAR
     v1,v2 : ARRAY_OF INTEGER [100];
-    dot : INTEGER;
+    dot,n1,n2 : INTEGER;
 BEGIN
     n1 := read_size();
     read_array(n1,v1);
