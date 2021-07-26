@@ -34,3 +34,36 @@ BEGIN
     END_FOR
     Write(sum); 
 END
+// *******************************************************************
+
+ALGORITHM second_checkpoint_second_method
+VAR
+    set1,set2 : ARRAY_OF INTEGER[20];
+    set_keys : ARRAY_OF INTEGER[40];
+    htable := HASH_TABLE<INTEGER,INTEGER>;
+    i, count : INTEGER;
+    sum : INTEGER := 0;
+BEGIN
+    FOR i FROM 0 TO set1.length -1 STEP 1  DO
+        IF (htable.lookup(set1[i]) = TRUE) THEN
+            count := htable.get(set1[i]);
+            htable.insert(set1[i],count+1);
+        ELSE
+            htable.insert(set1[i],1);
+        END_IF
+    END_FOR
+    FOR i FROM 0 TO set2.length -1 STEP 1  DO
+        IF (htable.lookup(set2[i]) = TRUE) THEN
+            count := htable.get(set2[i]);
+            htable.insert(set2[i],count+1);
+        ELSE
+            htable.insert(set2[i],1);
+        END_IF
+    END_FOR
+    set_keys := htable.getKeys();
+    FOR i FROM 0 TO set_keys.length -1 STEP 1  DO
+        IF (htable.get(set_keys[i]) = 1) THEN
+            sum := sum +set_keys[i];
+        END_IF
+    END_FOR
+END
